@@ -1,0 +1,28 @@
+application.properties
+
+# Arquivos de compilação
+target/
+
+# Arquivos de configuração específicos do ambiente
+application.properties
+application.yml
+
+# Arquivos de log
+logs/
+
+# Arquivos temporários
+*.tmp
+*.log
+
+# Arquivos de dependência
+build/
+.gradle/
+.mvn/
+
+# Arquivos de IDE
+.idea/
+.classpath
+.project
+.settings/
+*.iml
+
