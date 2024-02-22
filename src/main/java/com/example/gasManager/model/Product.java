@@ -4,29 +4,25 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Entity
-@Table(name="CLIENT")
+@Table(name = "PRODUCT")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
-public class Client {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id_client;
+    private Long id_product;
 
-    @Column(unique = true, nullable = false)
     private String name;
+    private Double unitary_value;
 
-    @OneToOne(mappedBy = "client")
-    private Address address;
-
-    @OneToMany(mappedBy = "client")
-    private List<Telephone> phoneList;
+    @OneToMany(mappedBy = "product")
+    private List<ProductSale> productSaleList;
 
 }
