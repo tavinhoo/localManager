@@ -24,7 +24,7 @@ public class Sale {
     private Double totalValue;
 
     @Column(nullable = false)
-    private LocalDateTime date_sale;
+    private LocalDateTime saleDate;
 
     @ManyToOne
     @JoinColumn(name = "id_customer", nullable = false)

@@ -20,12 +20,13 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
 
     public Optional<Customer> getOneCustomer(Long id) {
        return customerRepository.findById(id);
+    }
+
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
 
     public Optional<Customer> saveCustomer(CustomerDTO customerDTO) {
@@ -48,5 +49,14 @@ public class CustomerService {
             return Optional.of(customerRepository.save(customer0));
         }
         return Optional.empty();
+    }
+
+    public Optional<Customer> removeCustomer(Long id) {
+        Optional<Customer> customer0 = customerRepository.findById(id);
+        if(customer0.isEmpty()) {
+            return Optional.empty();
+        }
+        customerRepository.deleteById(id);
+        return Optional.of(customer0.get());
     }
 }
