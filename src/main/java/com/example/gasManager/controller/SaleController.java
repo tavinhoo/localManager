@@ -33,7 +33,7 @@ public class SaleController {
     }
 
     @PostMapping("/customer/{id}/sale")
-    public ResponseEntity createSale(@PathVariable(value = "id") Long id, @RequestBody @Valid SaleDTO inputSale) {
+    public ResponseEntity createSale(@PathVariable(value = "id") Long id, @RequestBody SaleDTO inputSale) {
       Optional<Sale> sale0 = saleService.saveSale(inputSale);
       if(sale0.isEmpty()) {
           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("OPERAÇÃO NÃO REALIZADA");

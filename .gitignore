@@ -6,6 +6,7 @@ target/
 # Arquivos de configuração específicos do ambiente
 application.properties
 application.yml
+application-test.propertiessa
 
 # Arquivos de log
 logs/
