@@ -7,43 +7,38 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class CustomerService {
 
-    private final CustomerRepository customerRepository;
-
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
+    private CustomerRepository customerRepository;
 
-
-    public Optional<Customer> getOneCustomer(Long id) {
-       return customerRepository.findById(id);
-    }
-
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
-
-    public Optional<Customer> saveCustomer(CustomerDTO customerDTO) {
-        Customer customer0 = new Customer();
-
-        try {
-            BeanUtils.copyProperties(customerDTO, customer0);
-            return Optional.of(customerRepository.save(customer0));
-
-        } catch (Exception e) {
-            return Optional.empty();
+    public Optional<Customer> findCustomerById(Long id) {
+        if (customerRepository.existsById(id)) {
+            return customerRepository.findById(id);
         }
+        return Optional.empty();
+    }
+
+    public List<Customer> findAllCustomers() {
+        List<Customer> customerList = customerRepository.findAll();
+        Collections.sort(customerList);
+        return customerList;
+    }
+
+    public Optional<Customer> saveCustomer(CustomerDTO customerdto) {
+        Customer customer0 = new Customer();
+        BeanUtils.copyProperties(customerdto, customer0);
+        return Optional.of(customerRepository.save(customer0));
     }
 
     public Optional<Customer> updateCustomer(Long id, CustomerDTO customerDTO) {
         Customer customer0 = new Customer();
-        if(customerRepository.existsById(id)) {
+        if (customerRepository.existsById(id)) {
             customer0 = customerRepository.findById(id).get();
             BeanUtils.copyProperties(customerDTO, customer0);
             return Optional.of(customerRepository.save(customer0));
@@ -53,7 +48,7 @@ public class CustomerService {
 
     public Optional<Customer> removeCustomer(Long id) {
         Optional<Customer> customer0 = customerRepository.findById(id);
-        if(customer0.isEmpty()) {
+        if (customer0.isEmpty()) {
             return Optional.empty();
         }
         customerRepository.deleteById(id);
