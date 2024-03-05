@@ -7,6 +7,9 @@ import com.example.gasManager.model.enums.CustomerGender;
 import com.example.gasManager.repository.CustomerRepository;
 import com.example.gasManager.repository.OrderRepository;
 import com.example.gasManager.service.CustomerService;
+import com.example.gasManager.service.OrderService;
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -22,10 +25,12 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CustomerService customerService;
 
+    private OrderService orderService;
+
     @Override
     public void run(String... args) throws Exception {
 
-//        CustomerDTO customer = new CustomerDTO(
+//        CustomerDTO customer0 = new CustomerDTO(
 //                "John Doe",
 //                CustomerGender.MALE,
 //                "123456789",
@@ -35,13 +40,17 @@ public class TestConfig implements CommandLineRunner {
 //                "123",
 //                "Near Example Landmark"
 //        );
-
+//
+//        Customer customer = new Customer();
+//        BeanUtils.copyProperties(customer0, customer);
+//
+//        customerService.saveCustomer(customer0);
+//
 //        Order order = new Order(100.0, Instant.now(), customer);
 //        Order order1 = new Order(540.0, Instant.now(), customer);
 //        Order order2 = new Order( 250.0, Instant.now(), customer);
 //        Order order3 = new Order(1000.0, Instant.now(), customer);
-
-//        customerService.saveCustomer(customer);
-//        orderRepository.saveAll(Arrays.asList(order, order1, order2, order3));
+//
+//        orderService.saveAll(Arrays.asList(order, order1, order2, order3));
     }
 }

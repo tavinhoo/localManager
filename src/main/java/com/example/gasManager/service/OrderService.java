@@ -31,6 +31,10 @@ public class OrderService {
         return Optional.of(orderRepository.save(order));
     }
 
+    public Optional<List<Order>> saveAll(List<Order> orders) {
+        return Optional.of(orderRepository.saveAll(orders));
+    }
+
     public Optional<Order> updateOrder(Long id, Order order) {
         Order order0 = new Order();
         if(orderRepository.existsById(id)) {

@@ -22,8 +22,8 @@ public class CustomerController {
 
     /* POST */
     @PostMapping("/customer")
-    public ResponseEntity<Object> createCustomer(@RequestBody CustomerDTO customerDTO) {
-        return ResponseEntity.ok().body("ESTÁ FUNCIONANDO!");
+    public ResponseEntity<Customer> createCustomer(@RequestBody CustomerDTO customerDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customerDTO).get());
     }
 
     @GetMapping("customer/{id}")
