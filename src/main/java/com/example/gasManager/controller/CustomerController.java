@@ -26,13 +26,30 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customerDTO).get());
     }
 
-    @GetMapping("customer/{id}")
+    /* GET */
+    @GetMapping("/customer/{id}")
     public ResponseEntity<Customer> getOneCustomer(@PathVariable(value = "id") Long id) {
         Optional<Customer> customer0 = customerService.findCustomerById(id);
         if (customer0.isPresent()) {
             return ResponseEntity.status(HttpStatus.OK).body(customer0.get());
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @GetMapping("/customer")
+    public ResponseEntity<List<Customer>> getAllCustomers() {
+        List<Customer> list0 = customerService.findAllCustomers();
+        return ResponseEntity.status(HttpStatus.OK).body(list0);
+    }
+
+    /* PUT */
+    @PutMapping("/customer/{id}")
+    public ResponseEntity<Object> updateCustomer(@PathVariable(value = "id") Long id, @RequestBody CustomerDTO customerDTO) {
+        Optional<Customer> customer0 = customerService.findCustomerById(id);
+        if(customer0.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CUSTOMER NOT FOUND!");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(customer0.get());
     }
 
 }
