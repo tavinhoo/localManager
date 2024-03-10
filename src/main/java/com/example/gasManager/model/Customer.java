@@ -43,7 +43,7 @@ public class Customer implements Serializable, Comparable<Customer> {
     private String reference;
 
     @OneToMany(mappedBy = "client")
-    private List<Order> wishList = new ArrayList<>();
+    private List<Order> orderList = new ArrayList<>();
 
     public Customer() {
     }
@@ -131,7 +131,7 @@ public class Customer implements Serializable, Comparable<Customer> {
     }
 
     public List<Order> getWishList() {
-        return wishList;
+        return orderList;
     }
 
     @Override

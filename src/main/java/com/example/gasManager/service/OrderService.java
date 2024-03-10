@@ -31,6 +31,7 @@ public class OrderService {
         return Optional.of(orderRepository.save(order));
     }
 
+    // Não há necessidade
     public Optional<List<Order>> saveAll(List<Order> orders) {
         return Optional.of(orderRepository.saveAll(orders));
     }

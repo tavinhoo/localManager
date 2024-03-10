@@ -36,35 +36,39 @@ public class CustomerService {
 
         boolean alreadyExits = false;
 
-        for(Customer cust : customerRepository.findAll()) {
-            if(cust.getName() == customer0.getName()) {
+        for (Customer cust : customerRepository.findAll()) {
+            if (customer0.getName().compareTo(cust.getName()) == 0) {
                 alreadyExits = true;
                 break;
             }
         }
 
-        if(alreadyExits) {
+        if (alreadyExits) {
             return Optional.empty();
         }
         return Optional.of(customerRepository.save(customer0));
     }
 
     public Optional<Customer> updateCustomer(Long id, CustomerDTO customerdto) {
-        Customer customer0 = new Customer();
-        if (customerRepository.existsById(id)) {
-            customer0 = customerRepository.findById(id).get();
-            BeanUtils.copyProperties(customerdto, customer0);
-            return Optional.of(customerRepository.save(customer0));
-        }
-        return Optional.empty();
-    }
-
-    public Optional<Customer> removeCustomer(Long id) {
         Optional<Customer> customer0 = customerRepository.findById(id);
+
         if (customer0.isEmpty()) {
             return Optional.empty();
         }
+
+        BeanUtils.copyProperties(customerdto, customer0.get());
+        return Optional.of(customerRepository.save(customer0.get()));
+    }
+
+    public Optional<Object> removeCustomer(Long id) {
+        Optional<Customer> customer0 = customerRepository.findById(id);
+
+        if (customer0.isEmpty()) {
+            return Optional.of("CUSTOMER NOT FOUND! ");
+        }
+
         customerRepository.deleteById(id);
-        return Optional.of(customer0.get());
+        return Optional.of("CUSTOMER HAS BEEN DELETED");
     }
 }
+
