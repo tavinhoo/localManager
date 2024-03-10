@@ -20,7 +20,7 @@ public class Customer implements Serializable, Comparable<Customer> {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id_customer;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)

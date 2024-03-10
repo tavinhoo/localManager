@@ -33,14 +33,27 @@ public class CustomerService {
     public Optional<Customer> saveCustomer(CustomerDTO customerdto) {
         Customer customer0 = new Customer();
         BeanUtils.copyProperties(customerdto, customer0);
+
+        boolean alreadyExits = false;
+
+        for(Customer cust : customerRepository.findAll()) {
+            if(cust.getName() == customer0.getName()) {
+                alreadyExits = true;
+                break;
+            }
+        }
+
+        if(alreadyExits) {
+            return Optional.empty();
+        }
         return Optional.of(customerRepository.save(customer0));
     }
 
-    public Optional<Customer> updateCustomer(Long id, CustomerDTO customerDTO) {
+    public Optional<Customer> updateCustomer(Long id, CustomerDTO customerdto) {
         Customer customer0 = new Customer();
         if (customerRepository.existsById(id)) {
             customer0 = customerRepository.findById(id).get();
-            BeanUtils.copyProperties(customerDTO, customer0);
+            BeanUtils.copyProperties(customerdto, customer0);
             return Optional.of(customerRepository.save(customer0));
         }
         return Optional.empty();

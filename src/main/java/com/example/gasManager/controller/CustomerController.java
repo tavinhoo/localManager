@@ -22,8 +22,13 @@ public class CustomerController {
 
     /* POST */
     @PostMapping("/customer")
-    public ResponseEntity<Customer> createCustomer(@RequestBody CustomerDTO customerDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(customerService.saveCustomer(customerDTO).get());
+    public ResponseEntity<Object> createCustomer(@RequestBody CustomerDTO customerDTO) {
+        Optional<Customer> customer0 = customerService.saveCustomer(customerDTO);
+
+        if(customer0.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CUSTOMER ALREADY EXISTS!");
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(customer0.get());
     }
 
     /* GET */
@@ -52,4 +57,13 @@ public class CustomerController {
         return ResponseEntity.status(HttpStatus.OK).body(customer0.get());
     }
 
+    /* DELETE */
+    @DeleteMapping("/customer/{id}")
+    public ResponseEntity<Object> deleteCustomer(@PathVariable(value = "id") Long id) {
+        Optional<Customer> customer0 = customerService.findCustomerById(id);
+        if(customer0.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("CUSTOMER NOT FOUND!");
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("CUSTOMER DELETED");
+    }
 }
