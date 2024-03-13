@@ -1,9 +1,11 @@
 package com.example.gasManager.service;
 
 
+import com.example.gasManager.DTO.OrderDTO;
 import com.example.gasManager.model.Customer;
 import com.example.gasManager.model.Order;
 import com.example.gasManager.repository.OrderRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,12 @@ public class OrderService {
 
     public List<Order> findAll() {
         return orderRepository.findAll();
+    }
+
+    public Order saveOrder(OrderDTO orderdto) {
+        Order order0 = new Order();
+        BeanUtils.copyProperties(orderdto, order0);
+        return orderRepository.save(order0)
     }
 
     public Optional<Order> save(Order order) {
