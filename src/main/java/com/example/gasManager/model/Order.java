@@ -16,7 +16,7 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_sale;
+    private Long order_id;
 
     @Column(nullable = false)
     private Double totalValue;
@@ -38,7 +38,7 @@ public class Order implements Serializable {
     }
 
     public Long getId_sale() {
-        return id_sale;
+        return order_id;
     }
 
     public Double getTotalValue() {
@@ -70,11 +70,11 @@ public class Order implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(id_sale, order.id_sale);
+        return Objects.equals(order_id, order.order_id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_sale);
+        return Objects.hash(order_id);
     }
 }

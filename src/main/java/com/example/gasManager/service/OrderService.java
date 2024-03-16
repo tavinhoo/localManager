@@ -29,14 +29,10 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public Order saveOrder(OrderDTO orderdto) {
+    public Optional<Order> saveOrder(OrderDTO orderDTO) {
         Order order0 = new Order();
-        BeanUtils.copyProperties(orderdto, order0);
-        return orderRepository.save(order0)
-    }
-
-    public Optional<Order> save(Order order) {
-        return Optional.of(orderRepository.save(order));
+        BeanUtils.copyProperties(orderDTO, order0);
+        return Optional.of(orderRepository.save(order0));
     }
 
     // Não há necessidade
@@ -54,11 +50,12 @@ public class OrderService {
         return Optional.empty();
     }
 
-    public Optional<Order> delete(Long id) {
+    public Optional<Object> deleteOrder(Long id) {
         Optional<Order> order0 = orderRepository.findById(id);
         if(order0.isEmpty()) {
             return Optional.empty();
         }
-        return order0;
+        orderRepository.delete(order0.get());
+        return Optional.of("ORDER HAS BEEN DELETED!");
     }
 }

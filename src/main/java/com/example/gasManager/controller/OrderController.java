@@ -38,5 +38,16 @@ public class OrderController {
     @PostMapping("/order")
     public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
         Optional<Order> order0 = orderService.saveOrder(orderDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(order0.get());
+    }
+
+    @DeleteMapping("/order/{id}")
+    public ResponseEntity<Object> removeOrder(@PathVariable(value = "id") Long id) {
+        Optional<Object> order0 = orderService.deleteOrder(id);
+        if(order0.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(order0.get());
     }
 }
