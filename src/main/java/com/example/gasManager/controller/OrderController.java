@@ -35,6 +35,12 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(order0.get());
     }
 
+    @GetMapping("/customer/{id}/order")
+    public ResponseEntity<List<Order>> getOrderByClientId(@PathVariable(value = "id") Long id) {
+        List<Order> list0 = orderService.getAllCustomersOrders(id);
+        return ResponseEntity.status(HttpStatus.OK).body(list0);
+    }
+
     @PostMapping("/order")
     public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
         Optional<Order> order0 = orderService.saveOrder(orderDTO);
@@ -50,4 +56,7 @@ public class OrderController {
 
         return ResponseEntity.status(HttpStatus.OK).body(order0.get());
     }
+
+
+
 }

@@ -25,6 +25,7 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CustomerService customerService;
 
+    @Autowired
     private OrderService orderService;
 
     @Override
@@ -41,10 +42,7 @@ public class TestConfig implements CommandLineRunner {
 //                "Near Example Landmark"
 //        );
 //
-//        Customer customer = new Customer();
-//        BeanUtils.copyProperties(customer0, customer);
-//
-//        customerService.saveCustomer(customer0);
+//        Customer customer = customerService.saveCustomer(customer0).get();
 //
 //        Order order = new Order(100.0, Instant.now(), customer);
 //        Order order1 = new Order(540.0, Instant.now(), customer);

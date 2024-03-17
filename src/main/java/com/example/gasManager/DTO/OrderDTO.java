@@ -1,4 +1,7 @@
 package com.example.gasManager.DTO;
 
-public record OrderDTO() {
+import java.time.Instant;
+
+public record OrderDTO(Double totalValue, Instant saleDate, Long clientId) {
+
 }
