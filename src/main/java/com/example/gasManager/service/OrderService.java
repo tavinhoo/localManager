@@ -22,15 +22,15 @@ public class OrderService {
     @Autowired
     private CustomerRepository customerRepository;
 
+    public List<Order> findAll() {
+        return orderRepository.findAll();
+    }
+
     public Optional<Order> findById(Long id) {
         if(orderRepository.existsById(id)) {
             return orderRepository.findById(id);
         }
         return Optional.empty();
-    }
-
-    public List<Order> findAll() {
-        return orderRepository.findAll();
     }
 
     public Optional<Order> saveOrder(OrderDTO orderDTO) {

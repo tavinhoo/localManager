@@ -1,10 +1,13 @@
 package com.example.gasManager.service;
 
 import com.example.gasManager.DTO.CustomerDTO;
+import com.example.gasManager.exceptions.CustomerAlreadyExists;
+import com.example.gasManager.exceptions.CustomerNotFound;
 import com.example.gasManager.model.Customer;
 import com.example.gasManager.repository.CustomerRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -17,35 +20,25 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public Optional<Customer> findCustomerById(Long id) {
-        if (customerRepository.existsById(id)) {
-            return customerRepository.findById(id);
-        }
-        return Optional.empty();
-    }
-
     public List<Customer> findAllCustomers() {
         List<Customer> customerList = customerRepository.findAll();
-        Collections.sort(customerList);
         return customerList;
     }
 
+    public Optional<Customer> findCustomerById(Long id) {
+        if (!customerRepository.existsById(id)) {
+            throw new CustomerNotFound("Cliente não encontrado!");
+        }
+        return customerRepository.findById(id);
+    }
+
+
     public Optional<Customer> saveCustomer(CustomerDTO customerdto) {
+        if(customerRepository.existsByName(customerdto.name())) {
+            throw new CustomerAlreadyExists("Já existe um usuário com este nome!");
+        }
         Customer customer0 = new Customer();
         BeanUtils.copyProperties(customerdto, customer0);
-
-        boolean alreadyExits = false;
-
-        for (Customer cust : customerRepository.findAll()) {
-            if (customer0.getName().compareTo(cust.getName()) == 0) {
-                alreadyExits = true;
-                break;
-            }
-        }
-
-        if (alreadyExits) {
-            return Optional.empty();
-        }
         return Optional.of(customerRepository.save(customer0));
     }
 
