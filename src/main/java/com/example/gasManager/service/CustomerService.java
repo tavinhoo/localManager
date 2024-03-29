@@ -43,25 +43,20 @@ public class CustomerService {
     }
 
     public Optional<Customer> updateCustomer(Long id, CustomerDTO customerdto) {
-        Optional<Customer> customer0 = customerRepository.findById(id);
-
-        if (customer0.isEmpty()) {
-            return Optional.empty();
+        if(!customerRepository.existsById(id)) {
+            throw new CustomerNotFound("Cadastro não encontrado ou não existe!");
         }
-
-        BeanUtils.copyProperties(customerdto, customer0.get());
-        return Optional.of(customerRepository.save(customer0.get()));
+        Customer customer0 = customerRepository.findById(id).get();
+        BeanUtils.copyProperties(customerdto, customer0);
+        return Optional.of(customerRepository.save(customer0));
     }
 
     public Optional<Object> removeCustomer(Long id) {
-        Optional<Customer> customer0 = customerRepository.findById(id);
-
-        if (customer0.isEmpty()) {
-            return Optional.of("CUSTOMER NOT FOUND! ");
+        if(!customerRepository.existsById(id)) {
+            throw new CustomerNotFound("Cadastro não encontrado!");
         }
-
         customerRepository.deleteById(id);
-        return Optional.of("CUSTOMER HAS BEEN DELETED");
+        return Optional.of("Cadastro deletado!");
     }
 }
 
