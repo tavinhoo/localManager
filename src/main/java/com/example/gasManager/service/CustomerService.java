@@ -7,10 +7,8 @@ import com.example.gasManager.model.Customer;
 import com.example.gasManager.repository.CustomerRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +29,6 @@ public class CustomerService {
         }
         return customerRepository.findById(id);
     }
-
 
     public Optional<Customer> saveCustomer(CustomerDTO customerdto) {
         if(customerRepository.existsByName(customerdto.name())) {

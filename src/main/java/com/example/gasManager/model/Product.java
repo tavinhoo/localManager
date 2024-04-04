@@ -3,11 +3,15 @@ package com.example.gasManager.model;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
+import java.io.Serial;
 import java.util.Objects;
 
 @Entity
 @Table(name = "tb_product")
 public class Product {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
