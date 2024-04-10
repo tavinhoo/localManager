@@ -2,6 +2,9 @@ package com.example.gasManager.service;
 
 import com.example.gasManager.DTO.CustomerDTO;
 import com.example.gasManager.DTO.ProductDTO;
+import com.example.gasManager.exceptions.CustomerNotFound;
+import com.example.gasManager.exceptions.ProductAlreadyExists;
+import com.example.gasManager.exceptions.ProductNotFound;
 import com.example.gasManager.model.Customer;
 import com.example.gasManager.model.Product;
 import com.example.gasManager.repository.ProductRepository;
@@ -19,45 +22,41 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Optional<Product> findProductById(Long id) {
-        if(productRepository.existsById(id)) {
-            return productRepository.findById(id);
-        }
-        return Optional.empty();
-    }
-
     public List<Product> findAllProducts() {
-        List<Product> productList = productRepository.findAll();
-        return productList;
+        List<Product> list0 = productRepository.findAll();
+        return list0;
     }
 
-    public Optional<Product> saveProduct(ProductDTO productDTO) {
+    public Optional<Product> findProductById(Long id) {
+        if(!productRepository.existsById(id)) {
+           throw new ProductNotFound("Produto não econtrado!");
+        }
+        return productRepository.findById(id);
+    }
+
+    public Optional<Product> saveProduct(ProductDTO product) {
+        if (productRepository.existsByName(product.name())) {
+            throw new ProductAlreadyExists("Já existe um produto com este nome!");
+        }
         Product product0 = new Product();
-        BeanUtils.copyProperties(productDTO, product0);
-
-        boolean alreadyExits = false;
-
-        for (Product prod : productRepository.findAll()) {
-            if (product0.getName().compareTo(prod.getName()) == 0) {
-                alreadyExits = true;
-                break;
-            }
-        }
-
-        if (alreadyExits) {
-            return Optional.empty();
-        }
+        BeanUtils.copyProperties(product, product0);
         return Optional.of(productRepository.save(product0));
     }
 
-    public Optional<Product> updateCustomer(Long id, ProductDTO productDTO) {
-        Optional<Product> prod0 = productRepository.findById(id);
-
-        if (prod0.isEmpty()) {
-            return Optional.empty();
+    public Optional<Product> updateProduct(Long id, ProductDTO product) {
+        if(!productRepository.existsById(id)) {
+            throw new ProductNotFound("Produto não econtrado!");
         }
+        Product product0 = productRepository.findById(id).get();
+        BeanUtils.copyProperties(product, product0);
+        return Optional.of(productRepository.save(product0));
+    }
 
-        BeanUtils.copyProperties(productDTO, prod0.get());
-        return Optional.of(productRepository.save(prod0.get()));
+    public Optional<Object> removeProduct(Long id) {
+        if(!productRepository.existsById(id)) {
+            throw new ProductNotFound("Produto não econtrado!");
+        }
+        productRepository.deleteById(id);
+        return Optional.of("Produto Deletado!");
     }
 }

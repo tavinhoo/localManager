@@ -2,12 +2,12 @@ package com.example.gasManager.model.enums;
 
 public enum CustomerGender {
 
-    MALE(1),
-    FEMALE(2);
+    MALE(0),
+    FEMALE(1);
 
     private int code;
 
-    private CustomerGender(int i) {
+    private CustomerGender(int code) {
         this.code = code;
     }
 
