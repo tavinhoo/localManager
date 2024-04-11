@@ -2,11 +2,11 @@ package com.example.gasManager.model.PK;
 
 import com.example.gasManager.model.Order;
 import com.example.gasManager.model.Product;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
+@Embeddable
 public class OrderItemPK {
 
     private static final long serialVersionUID = 1L;

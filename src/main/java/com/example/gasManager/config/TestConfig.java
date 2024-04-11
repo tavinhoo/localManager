@@ -37,7 +37,7 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        CustomerDTO customer0 = new CustomerDTO(
+        CustomerDTO customer0dto = new CustomerDTO(
                 "John Doe",
                 CustomerGender.MALE,
                 "1234567890",
@@ -48,7 +48,7 @@ public class TestConfig implements CommandLineRunner {
                 "Example Reference"
         );
 
-        CustomerDTO customer1 = new CustomerDTO(
+        CustomerDTO customer1dto = new CustomerDTO(
                 "Selena",
                 CustomerGender.FEMALE,
                 "1234567890",
@@ -59,7 +59,7 @@ public class TestConfig implements CommandLineRunner {
                 "Example Reference"
         );
 
-        CustomerDTO customer2 = new CustomerDTO(
+        CustomerDTO customer2dto = new CustomerDTO(
                 "Gabriel",
                 CustomerGender.MALE,
                 "1234567890",
@@ -70,7 +70,7 @@ public class TestConfig implements CommandLineRunner {
                 "Example Reference"
         );
 
-        CustomerDTO customer3 = new CustomerDTO(
+        CustomerDTO customer3dto = new CustomerDTO(
                 "Martina",
                 CustomerGender.FEMALE,
                 "1234567890",
@@ -81,11 +81,10 @@ public class TestConfig implements CommandLineRunner {
                 "Example Reference"
         );
 
-
-        customerService.saveCustomer(customer0);
-        customerService.saveCustomer(customer1);
-        customerService.saveCustomer(customer2);
-        customerService.saveCustomer(customer3);
+        customerService.saveCustomer(customer0dto);
+        customerService.saveCustomer(customer1dto);
+        customerService.saveCustomer(customer2dto);
+        customerService.saveCustomer(customer3dto);
 
         ProductDTO product0 = new ProductDTO(
                 "Botijão de Gás",
@@ -99,5 +98,11 @@ public class TestConfig implements CommandLineRunner {
 
         productService.saveProduct(product0);
         productService.saveProduct(product1);
+
+        Customer customer0 = new Customer();
+
+        BeanUtils.copyProperties(customer0dto, customer0);
+
+        Order o1 = new Order(Instant.now(), customer0);
     }
 }

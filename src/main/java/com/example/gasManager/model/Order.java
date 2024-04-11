@@ -1,11 +1,14 @@
 package com.example.gasManager.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_order")
@@ -18,51 +21,46 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long order_id;
 
-    @Column(nullable = false)
-    private Double totalValue;
-
-    @Column(nullable = false)
-    private Instant saleDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+    private Instant orderDate;
 
     @ManyToOne
-    @JoinColumn(name = "id_customer")
-    private Customer client;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @OneToMany(mappedBy = "id.order")
+    Set<OrderItem> orderItems = new HashSet<>();
 
     public Order() {
     }
 
-    public Order(Double totalValue, Instant saleDate, Customer client) {
-        this.totalValue = totalValue;
-        this.saleDate = saleDate;
-        this.client = client;
+    public Order(Instant orderDate, Customer customer) {
+        this.orderDate = orderDate;
+        this.customer = customer;
     }
 
-    public Long getId_sale() {
+    public Long getOrder_id() {
         return order_id;
     }
 
-    public Double getTotalValue() {
-        return totalValue;
+    public Instant getOrderDate() {
+        return orderDate;
     }
 
-    public void setTotalValue(Double totalValue) {
-        this.totalValue = totalValue;
+    public void setOrderDate(Instant orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public Instant getSaleDate() {
-        return saleDate;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setSaleDate(Instant saleDate) {
-        this.saleDate = saleDate;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public Customer getClient() {
-        return client;
-    }
-
-    public void setClient(Customer client) {
-        this.client = client;
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
     @Override
@@ -70,11 +68,11 @@ public class Order implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(order_id, order.order_id);
+        return Objects.equals(order_id, order.order_id) && Objects.equals(orderDate, order.orderDate) && Objects.equals(customer, order.customer) && Objects.equals(orderItems, order.orderItems);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(order_id);
+        return Objects.hash(order_id, orderDate, customer, orderItems);
     }
 }

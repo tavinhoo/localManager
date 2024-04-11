@@ -3,9 +3,13 @@ package com.example.gasManager.model;
 import com.example.gasManager.model.PK.OrderItemPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.Objects;
 
+@Entity
+@Table(name = "tb_order_item")
 public class OrderItem {
 
     private static final long serialVersionUID = 1L;

@@ -42,7 +42,7 @@ public class Customer implements Serializable, Comparable<Customer> {
 
     private String reference;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "customer")
     private List<Order> orderList = new ArrayList<>();
 
     public Customer() {

@@ -2,9 +2,10 @@ package com.example.gasManager.model;
 
 import jakarta.persistence.*;
 
-import javax.annotation.processing.Generated;
 import java.io.Serial;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_product")
@@ -18,6 +19,9 @@ public class Product {
     private Long id;
     private String name;
     private Double price;
+
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
 
     public Product() {
     }
