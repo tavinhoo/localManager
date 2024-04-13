@@ -5,13 +5,13 @@ import com.example.gasManager.DTO.ProductDTO;
 import com.example.gasManager.model.Customer;
 import com.example.gasManager.model.Order;
 import com.example.gasManager.model.OrderItem;
+import com.example.gasManager.model.Product;
 import com.example.gasManager.model.enums.CustomerGender;
-import com.example.gasManager.repository.CustomerRepository;
-import com.example.gasManager.repository.OrderRepository;
+import com.example.gasManager.model.enums.PaymentStatus;
+import com.example.gasManager.repository.OrderItemRepository;
 import com.example.gasManager.service.CustomerService;
 import com.example.gasManager.service.OrderService;
 import com.example.gasManager.service.ProductService;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -33,6 +33,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -81,7 +84,6 @@ public class TestConfig implements CommandLineRunner {
                 "Example Reference"
         );
 
-        customerService.saveCustomer(customer0dto);
         customerService.saveCustomer(customer1dto);
         customerService.saveCustomer(customer2dto);
         customerService.saveCustomer(customer3dto);
@@ -99,10 +101,20 @@ public class TestConfig implements CommandLineRunner {
         productService.saveProduct(product0);
         productService.saveProduct(product1);
 
+        Product p0 = productService.findProductById(1L).get();
+        Product p1 = productService.findProductById(2L).get();
+
         Customer customer0 = new Customer();
 
         BeanUtils.copyProperties(customer0dto, customer0);
 
-        Order o1 = new Order(Instant.now(), customer0);
+        Order o1 = new Order(Instant.now(), customerService.saveCustomer(customer0dto).get());
+
+        orderService.saveOrder(o1);
+
+        OrderItem oi1 = new OrderItem(o1, p0, 2, p0.getPrice(), PaymentStatus.PENDING);
+        OrderItem oi2 = new OrderItem(o1, p1, 1, p1.getPrice(), PaymentStatus.PAID_OUT);
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2));
     }
 }

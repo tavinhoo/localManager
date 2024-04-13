@@ -1,6 +1,7 @@
 package com.example.gasManager.model;
 
 import com.example.gasManager.model.PK.OrderItemPK;
+import com.example.gasManager.model.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -20,15 +21,18 @@ public class OrderItem {
     private Integer quantity;
     private Double price;
 
+    private Integer paymentStatus;
+
     public OrderItem() {
 
     }
 
-    public OrderItem(Order order, Product product, Integer quantity, Double price) {
+    public OrderItem(Order order, Product product, Integer quantity, Double price, PaymentStatus paymentStatus) {
         id.setOrder(order);
         id.setProduct(product);
         this.quantity = quantity;
         this.price = price;
+        setPaymentStatus(paymentStatus);
     }
 
     @JsonIgnore
@@ -62,6 +66,16 @@ public class OrderItem {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public PaymentStatus getPaymentStatus() throws IllegalAccessException {
+        return PaymentStatus.valueOf(paymentStatus);
+    }
+
+    public void setPaymentStatus(PaymentStatus ps) {
+        if(ps != null) {
+            this.paymentStatus = ps.getCode();
+        }
     }
 
     public Double getSubTotal() {
