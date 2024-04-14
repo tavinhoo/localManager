@@ -3,6 +3,7 @@ package com.example.gasManager.model;
 import com.example.gasManager.model.PK.OrderItemPK;
 import com.example.gasManager.model.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -44,6 +45,7 @@ public class OrderItem {
         id.setOrder(order);
     }
 
+    @JsonManagedReference
     public Product getProduct() {
         return id.getProduct();
     }
@@ -87,12 +89,11 @@ public class OrderItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return Objects.equals(id, orderItem.id);
+        return Objects.equals(id, orderItem.id) && Objects.equals(quantity, orderItem.quantity) && Objects.equals(price, orderItem.price) && Objects.equals(paymentStatus, orderItem.paymentStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, quantity, price, paymentStatus);
     }
-
 }

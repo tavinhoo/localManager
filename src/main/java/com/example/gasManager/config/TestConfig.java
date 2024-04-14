@@ -40,6 +40,8 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        // ENTRADA DE CLIENTES
+
         CustomerDTO customer0dto = new CustomerDTO(
                 "John Doe",
                 CustomerGender.MALE,
@@ -84,9 +86,25 @@ public class TestConfig implements CommandLineRunner {
                 "Example Reference"
         );
 
+        CustomerDTO customer4dto = new CustomerDTO(
+                "Luiz Otávio Faria da Silva",
+                CustomerGender.MALE,
+                "18998213432",
+                null,
+                "Jardim Morumbi",
+                "Aparecida Chagas Moreira",
+                "143",
+                "Campo sintético"
+        );
+
+        // SALVANDO NO BANCO DE DADOS
+
         customerService.saveCustomer(customer1dto);
         customerService.saveCustomer(customer2dto);
         customerService.saveCustomer(customer3dto);
+        customerService.saveCustomer(customer4dto);
+
+        // ENTRADA DE PRODUTOS
 
         ProductDTO product0 = new ProductDTO(
                 "Botijão de Gás",
@@ -98,23 +116,22 @@ public class TestConfig implements CommandLineRunner {
                 12.00
         );
 
+        // SALVANDO NO BANCO DE DADOS
+
         productService.saveProduct(product0);
         productService.saveProduct(product1);
+
+        Order o1 = new Order(Instant.now(), customerService.findCustomerById(4L).get());
+        orderService.saveOrder(o1);
 
         Product p0 = productService.findProductById(1L).get();
         Product p1 = productService.findProductById(2L).get();
 
-        Customer customer0 = new Customer();
+        OrderItem oi1 = new OrderItem(o1, p0, 4, p0.getPrice(), PaymentStatus.PAID_OUT);
+        OrderItem oi3 = new OrderItem(o1, p1, 3, p1.getPrice(), PaymentStatus.PENDING);
 
-        BeanUtils.copyProperties(customer0dto, customer0);
+        orderItemRepository.save(oi1);
+        orderItemRepository.save(oi3);
 
-        Order o1 = new Order(Instant.now(), customerService.saveCustomer(customer0dto).get());
-
-        orderService.saveOrder(o1);
-
-        OrderItem oi1 = new OrderItem(o1, p0, 2, p0.getPrice(), PaymentStatus.PENDING);
-        OrderItem oi2 = new OrderItem(o1, p1, 1, p1.getPrice(), PaymentStatus.PAID_OUT);
-
-        orderItemRepository.saveAll(Arrays.asList(oi1, oi2));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.gasManager.model;
 
 import com.example.gasManager.model.enums.CustomerGender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -42,6 +43,7 @@ public class Customer implements Serializable, Comparable<Customer> {
 
     private String reference;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "customer")
     private List<Order> orderList = new ArrayList<>();
 
@@ -129,6 +131,7 @@ public class Customer implements Serializable, Comparable<Customer> {
     public void setReference(String reference) {
         this.reference = reference;
     }
+
 
     public List<Order> getWishList() {
         return orderList;

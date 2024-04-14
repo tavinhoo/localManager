@@ -2,6 +2,8 @@ package com.example.gasManager.model.PK;
 
 import com.example.gasManager.model.Order;
 import com.example.gasManager.model.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -14,6 +16,7 @@ public class OrderItemPK {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
