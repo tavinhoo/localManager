@@ -2,6 +2,7 @@ package com.example.gasManager.controller;
 
 import com.example.gasManager.DTO.CustomerDTO;
 import com.example.gasManager.exceptions.CustomerAlreadyExists;
+import com.example.gasManager.exceptions.CustomerHasActiveOrders;
 import com.example.gasManager.exceptions.CustomerNotFound;
 import com.example.gasManager.service.CustomerService;
 import jakarta.validation.Valid;
@@ -63,6 +64,8 @@ public class CustomerController {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(customerService.removeCustomer(id));
         } catch (CustomerNotFound error) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error.getMessage());
+        } catch (CustomerHasActiveOrders error) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(error.getMessage());
         }
     }
 }

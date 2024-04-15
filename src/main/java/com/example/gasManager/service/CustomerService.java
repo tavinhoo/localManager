@@ -2,6 +2,7 @@ package com.example.gasManager.service;
 
 import com.example.gasManager.DTO.CustomerDTO;
 import com.example.gasManager.exceptions.CustomerAlreadyExists;
+import com.example.gasManager.exceptions.CustomerHasActiveOrders;
 import com.example.gasManager.exceptions.CustomerNotFound;
 import com.example.gasManager.model.Customer;
 import com.example.gasManager.repository.CustomerRepository;
@@ -51,6 +52,10 @@ public class CustomerService {
     public Optional<Object> removeCustomer(Long id) {
         if(!customerRepository.existsById(id)) {
             throw new CustomerNotFound("Cadastro não encontrado!");
+        }
+
+        if(!customerRepository.findById(id).get().getWishList().isEmpty()) {
+            throw new CustomerHasActiveOrders("Este cliente tem pedidos ativos!");
         }
         customerRepository.deleteById(id);
         return Optional.of("Cadastro deletado!");
