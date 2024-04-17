@@ -1,15 +1,14 @@
 package com.example.gasManager.service;
 
-
 import com.example.gasManager.exceptions.OrderItemsNotEmptyException;
 import com.example.gasManager.exceptions.OrderNotFound;
 import com.example.gasManager.model.Order;
+import com.example.gasManager.model.OrderItem;
 import com.example.gasManager.repository.CustomerRepository;
+import com.example.gasManager.repository.OrderItemRepository;
 import com.example.gasManager.repository.OrderRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +18,9 @@ public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -50,4 +52,22 @@ public class OrderService {
           }
         throw new OrderNotFound("Pedido não encontrado!");
     }
+
+    public void saveOrderItem(Order order, OrderItem orderItem) {
+        orderItemRepository.save(orderItem);
+        order.getOrderItems().add(orderItem);
+    }
+
+//    public Optional<Object> deleteItem(Long orderId) {
+//        if(orderRepository.existsById(orderId)) {
+//            Order o0 = orderRepository.findById(orderId).get();
+//            if(!o0.getOrderItems().isEmpty()) {
+//                for(OrderItem oi : o0.getOrderItems()) {
+//                    if(oi.equals())
+//                }
+//            } else {
+//                throw new OrderItemsIsEmpty("Não há nenhum item nesse pedido!");
+//            }
+//        }
+//    }
 }

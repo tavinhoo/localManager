@@ -4,9 +4,7 @@ import com.example.gasManager.model.PK.OrderItemPK;
 import com.example.gasManager.model.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 

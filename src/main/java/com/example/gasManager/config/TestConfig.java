@@ -97,26 +97,20 @@ public class TestConfig implements CommandLineRunner {
                 "Campo sintético"
         );
 
-        // SALVANDO NO BANCO DE DADOS
-
         customerService.saveCustomer(customer1dto);
         customerService.saveCustomer(customer2dto);
         customerService.saveCustomer(customer3dto);
         customerService.saveCustomer(customer4dto);
 
-        // ENTRADA DE PRODUTOS
-
         ProductDTO product0 = new ProductDTO(
-                "Botijão de Gás",
+                "Botijão de gás glp 13kg",
                 115.00
         );
 
         ProductDTO product1 = new ProductDTO(
-                "Galão d'água 20L",
+                "Galão de água mineral 20L",
                 12.00
         );
-
-        // SALVANDO NO BANCO DE DADOS
 
         productService.saveProduct(product0);
         productService.saveProduct(product1);
@@ -128,10 +122,16 @@ public class TestConfig implements CommandLineRunner {
         Product p1 = productService.findProductById(2L).get();
 
         OrderItem oi1 = new OrderItem(o1, p0, 4, p0.getPrice(), PaymentStatus.PAID_OUT);
+        OrderItem oi2 = new OrderItem(o1, p0, 1, p0.getPrice(), PaymentStatus.PENDING);
         OrderItem oi3 = new OrderItem(o1, p1, 3, p1.getPrice(), PaymentStatus.PENDING);
 
         orderItemRepository.save(oi1);
+        orderItemRepository.save(oi2);
         orderItemRepository.save(oi3);
+
+        orderService.saveOrderItem(o1, oi1);
+        orderService.saveOrderItem(o1, oi2);
+        orderService.saveOrderItem(o1, oi3);
 
     }
 }
