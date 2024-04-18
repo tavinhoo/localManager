@@ -7,6 +7,7 @@ import com.example.gasManager.model.Order;
 import com.example.gasManager.model.OrderItem;
 import com.example.gasManager.model.Product;
 import com.example.gasManager.model.enums.CustomerGender;
+import com.example.gasManager.model.enums.PaymentMethod;
 import com.example.gasManager.model.enums.PaymentStatus;
 import com.example.gasManager.repository.OrderItemRepository;
 import com.example.gasManager.service.CustomerService;
@@ -121,17 +122,12 @@ public class TestConfig implements CommandLineRunner {
         Product p0 = productService.findProductById(1L).get();
         Product p1 = productService.findProductById(2L).get();
 
-        OrderItem oi1 = new OrderItem(o1, p0, 4, p0.getPrice(), PaymentStatus.PAID_OUT);
-        OrderItem oi2 = new OrderItem(o1, p0, 1, p0.getPrice(), PaymentStatus.PENDING);
-        OrderItem oi3 = new OrderItem(o1, p1, 3, p1.getPrice(), PaymentStatus.PENDING);
+        OrderItem oi1 = new OrderItem(o1, p0, 2, p0.getPrice(), PaymentStatus.PAID_OUT, PaymentMethod.CASH);
+        OrderItem oi2 = new OrderItem(o1, p1, 1, p1.getPrice(), PaymentStatus.PAID_OUT, PaymentMethod.CASH);
+        OrderItem oi3 = new OrderItem(o1, p0, 1, p0.getPrice(), PaymentStatus.PENDING, PaymentMethod.DEBIT);
+        OrderItem oi4 = new OrderItem(o1, p1, 1, p1.getPrice(), PaymentStatus.PENDING);
 
-        orderItemRepository.save(oi1);
-        orderItemRepository.save(oi2);
-        orderItemRepository.save(oi3);
-
-        orderService.saveOrderItem(o1, oi1);
-        orderService.saveOrderItem(o1, oi2);
-        orderService.saveOrderItem(o1, oi3);
-
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+        orderService.saveOrder(o1);
     }
 }

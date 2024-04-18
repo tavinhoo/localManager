@@ -3,9 +3,7 @@ package com.example.gasManager.model;
 import jakarta.persistence.*;
 
 import java.io.Serial;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_product")
@@ -20,8 +18,8 @@ public class Product {
     private String name;
     private Double price;
 
-    @OneToMany(mappedBy = "id.product")
-    private Set<OrderItem> items = new HashSet<>();
+    @OneToMany(mappedBy = "product")
+    private List<OrderItem> items = new ArrayList<>();
 
     public Product() {
     }

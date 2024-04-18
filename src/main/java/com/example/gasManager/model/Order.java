@@ -28,7 +28,7 @@ public class Order implements Serializable {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "id.order")
+    @OneToMany(mappedBy = "order")
     List<OrderItem> orderItems = new ArrayList<>();
 
     public Order() {
