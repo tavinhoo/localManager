@@ -122,10 +122,10 @@ public class TestConfig implements CommandLineRunner {
         Product p0 = productService.findProductById(1L).get();
         Product p1 = productService.findProductById(2L).get();
 
-        OrderItem oi1 = new OrderItem(o1, p0, 2, p0.getPrice(), PaymentStatus.PAID_OUT, PaymentMethod.CASH);
-        OrderItem oi2 = new OrderItem(o1, p1, 1, p1.getPrice(), PaymentStatus.PAID_OUT, PaymentMethod.CASH);
-        OrderItem oi3 = new OrderItem(o1, p0, 1, p0.getPrice(), PaymentStatus.PENDING, PaymentMethod.DEBIT);
-        OrderItem oi4 = new OrderItem(o1, p1, 1, p1.getPrice(), PaymentStatus.PENDING);
+        OrderItem oi1 = new OrderItem(o1, p0, 2, PaymentStatus.PAID_OUT, PaymentMethod.CASH);
+        OrderItem oi2 = new OrderItem(o1, p1, 1, PaymentStatus.PAID_OUT, PaymentMethod.CASH);
+        OrderItem oi3 = new OrderItem(o1, p0, 1, PaymentStatus.PENDING, PaymentMethod.DEBIT);
+        OrderItem oi4 = new OrderItem(o1, p1, 1, PaymentStatus.PENDING);
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
         orderService.saveOrder(o1);

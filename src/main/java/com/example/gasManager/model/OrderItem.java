@@ -26,8 +26,6 @@ public class OrderItem{
 
     private Integer quantity;
 
-    private Double price;
-
     private Integer paymentStatus;
 
     private Integer paymentMethod;
@@ -36,20 +34,18 @@ public class OrderItem{
 
     }
 
-    public OrderItem(Order order, Product product, Integer quantity, Double price, PaymentStatus paymentStatus, PaymentMethod paymentMethod) {
+    public OrderItem(Order order, Product product, Integer quantity, PaymentStatus paymentStatus, PaymentMethod paymentMethod) {
         this.order = order;
         this.product = product;
         this.quantity = quantity;
-        this.price = price;
         setPaymentStatus(paymentStatus);
         setPaymentMethod(paymentMethod);
     }
 
-    public OrderItem(Order order, Product product, Integer quantity, Double price, PaymentStatus paymentStatus) {
+    public OrderItem(Order order, Product product, Integer quantity, PaymentStatus paymentStatus) {
         this.order = order;
         this.product = product;
         this.quantity = quantity;
-        this.price = price;
         setPaymentStatus(paymentStatus);
         if(paymentStatus.getCode() == PaymentStatus.PENDING.getCode()) {
             paymentMethod = PaymentMethod.NONE.getCode();
@@ -88,14 +84,6 @@ public class OrderItem{
         this.quantity = quantity;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
     public void setPaymentStatus(Integer paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
@@ -125,7 +113,7 @@ public class OrderItem{
     }
 
     public Double getSubTotal() {
-        return price * quantity;
+        return product.getPrice() * quantity;
     }
 
     @Override
@@ -133,11 +121,11 @@ public class OrderItem{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return Objects.equals(orderItemId, orderItem.orderItemId) && Objects.equals(order, orderItem.order) && Objects.equals(product, orderItem.product) && Objects.equals(quantity, orderItem.quantity) && Objects.equals(price, orderItem.price) && Objects.equals(paymentStatus, orderItem.paymentStatus) && Objects.equals(paymentMethod, orderItem.paymentMethod);
+        return Objects.equals(orderItemId, orderItem.orderItemId) && Objects.equals(order, orderItem.order) && Objects.equals(product, orderItem.product) && Objects.equals(quantity, orderItem.quantity) && Objects.equals(paymentStatus, orderItem.paymentStatus) && Objects.equals(paymentMethod, orderItem.paymentMethod);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderItemId, order, product, quantity, price, paymentStatus, paymentMethod);
+        return Objects.hash(orderItemId, order, product, quantity, paymentStatus, paymentMethod);
     }
 }
