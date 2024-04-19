@@ -1,5 +1,6 @@
 package com.example.gasManager.service;
 
+import com.example.gasManager.exceptions.OrderItemsIsEmpty;
 import com.example.gasManager.exceptions.OrderItemsNotEmptyException;
 import com.example.gasManager.exceptions.OrderNotFound;
 import com.example.gasManager.model.Order;
@@ -58,16 +59,21 @@ public class OrderService {
         order.getOrderItems().add(orderItem);
     }
 
-//    public Optional<Object> deleteItem(Long orderId) {
-//        if(orderRepository.existsById(orderId)) {
-//            Order o0 = orderRepository.findById(orderId).get();
-//            if(!o0.getOrderItems().isEmpty()) {
-//                for(OrderItem oi : o0.getOrderItems()) {
-//                    if(oi.equals())
-//                }
-//            } else {
-//                throw new OrderItemsIsEmpty("Não há nenhum item nesse pedido!");
-//            }
-//        }
-//    }
+    public Optional<Object> deleteItem(Long orderId, Long orderItemId) {
+        if(orderRepository.existsById(orderId)) {
+            Order o0 = orderRepository.findById(orderId).get();
+            if(!o0.getOrderItems().isEmpty()) {
+                for(OrderItem oi : o0.getOrderItems()) {
+                    if(oi.getId() == orderItemId) {
+                        orderItemRepository.delete(oi);
+                    }
+                }
+                return Optional.of("Item removido!");
+            } else {
+                throw new OrderItemsIsEmpty("Não há nenhum item nesse pedido!");
+            }
+        } else {
+            throw new OrderNotFound("Este pedido não foi encontrado ou não existe!");
+        }
+    }
 }

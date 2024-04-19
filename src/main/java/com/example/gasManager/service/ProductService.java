@@ -1,18 +1,14 @@
 package com.example.gasManager.service;
 
-import com.example.gasManager.DTO.CustomerDTO;
 import com.example.gasManager.DTO.ProductDTO;
-import com.example.gasManager.exceptions.CustomerNotFound;
 import com.example.gasManager.exceptions.ProductAlreadyExists;
 import com.example.gasManager.exceptions.ProductNotFound;
-import com.example.gasManager.model.Customer;
 import com.example.gasManager.model.Product;
 import com.example.gasManager.repository.ProductRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

@@ -2,8 +2,6 @@ package com.example.gasManager.model.PK;
 
 import com.example.gasManager.model.Order;
 import com.example.gasManager.model.Product;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Objects;

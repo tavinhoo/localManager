@@ -67,14 +67,6 @@ public class OrderItem{
         this.order = order;
     }
 
-    @JsonManagedReference
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     public Integer getQuantity() {
         return quantity;
@@ -110,6 +102,15 @@ public class OrderItem{
         if(pm != null) {
             this.paymentMethod = pm.getCode();
         }
+    }
+
+    @JsonManagedReference
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Double getSubTotal() {

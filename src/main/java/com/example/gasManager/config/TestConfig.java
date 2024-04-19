@@ -2,7 +2,6 @@ package com.example.gasManager.config;
 
 import com.example.gasManager.DTO.CustomerDTO;
 import com.example.gasManager.DTO.ProductDTO;
-import com.example.gasManager.model.Customer;
 import com.example.gasManager.model.Order;
 import com.example.gasManager.model.OrderItem;
 import com.example.gasManager.model.Product;
@@ -13,7 +12,6 @@ import com.example.gasManager.repository.OrderItemRepository;
 import com.example.gasManager.service.CustomerService;
 import com.example.gasManager.service.OrderService;
 import com.example.gasManager.service.ProductService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
