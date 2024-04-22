@@ -1,8 +1,8 @@
 package com.example.gasManager.service;
 
-import com.example.gasManager.exceptions.OrderItemsIsEmpty;
-import com.example.gasManager.exceptions.OrderItemsNotEmptyException;
-import com.example.gasManager.exceptions.OrderNotFound;
+import com.example.gasManager.model.exceptions.OrderItemsIsEmpty;
+import com.example.gasManager.model.exceptions.OrderItemsNotEmptyException;
+import com.example.gasManager.model.exceptions.OrderNotFound;
 import com.example.gasManager.model.Order;
 import com.example.gasManager.model.OrderItem;
 import com.example.gasManager.repository.CustomerRepository;
@@ -35,6 +35,11 @@ public class OrderService {
             throw new OrderNotFound("Pedido não encontrado!");
         }
         return orderRepository.findById(id);
+    }
+
+    public Optional<List<OrderItem>> findAllOrderItems() {
+        List<OrderItem> orderItemList = orderItemRepository.findAll();
+        return Optional.of(orderItemList);
     }
 
     public Optional<Order> saveOrder(Order order) {

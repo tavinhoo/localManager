@@ -1,7 +1,7 @@
 package com.example.gasManager.config;
 
-import com.example.gasManager.DTO.CustomerDTO;
-import com.example.gasManager.DTO.ProductDTO;
+import com.example.gasManager.model.DTO.CustomerDTO;
+import com.example.gasManager.model.DTO.ProductDTO;
 import com.example.gasManager.model.Order;
 import com.example.gasManager.model.OrderItem;
 import com.example.gasManager.model.Product;

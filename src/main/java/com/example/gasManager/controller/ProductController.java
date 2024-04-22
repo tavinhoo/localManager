@@ -1,8 +1,8 @@
 package com.example.gasManager.controller;
 
-import com.example.gasManager.DTO.ProductDTO;
+import com.example.gasManager.model.DTO.ProductDTO;
 import com.example.gasManager.model.Product;
-import com.example.gasManager.exceptions.ProductNotFound;
+import com.example.gasManager.model.exceptions.ProductNotFound;
 import com.example.gasManager.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

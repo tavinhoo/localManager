@@ -1,8 +1,8 @@
 package com.example.gasManager.service;
 
-import com.example.gasManager.DTO.ProductDTO;
-import com.example.gasManager.exceptions.ProductAlreadyExists;
-import com.example.gasManager.exceptions.ProductNotFound;
+import com.example.gasManager.model.DTO.ProductDTO;
+import com.example.gasManager.model.exceptions.ProductAlreadyExists;
+import com.example.gasManager.model.exceptions.ProductNotFound;
 import com.example.gasManager.model.Product;
 import com.example.gasManager.repository.ProductRepository;
 import org.springframework.beans.BeanUtils;

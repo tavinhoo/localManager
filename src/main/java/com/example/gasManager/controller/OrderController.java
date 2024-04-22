@@ -1,17 +1,18 @@
 package com.example.gasManager.controller;
 
 
-import com.example.gasManager.exceptions.OrderItemsIsEmpty;
-import com.example.gasManager.exceptions.OrderNotFound;
+import com.example.gasManager.model.OrderItem;
+import com.example.gasManager.model.exceptions.OrderItemsIsEmpty;
+import com.example.gasManager.model.exceptions.OrderNotFound;
 import com.example.gasManager.model.Order;
 import com.example.gasManager.service.OrderService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,11 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.status(HttpStatus.OK).body(order0.get());
+    }
+
+    @GetMapping("order/items")
+    private ResponseEntity<List<OrderItem>> getAllOrderItems() {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findAllOrderItems().get());
     }
 
 //    @PostMapping("/order")

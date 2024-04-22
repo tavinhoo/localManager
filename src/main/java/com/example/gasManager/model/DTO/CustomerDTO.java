@@ -1,4 +1,4 @@
-package com.example.gasManager.DTO;
+package com.example.gasManager.model.DTO;
 
 import com.example.gasManager.model.enums.CustomerGender;
 import jakarta.validation.constraints.NotBlank;

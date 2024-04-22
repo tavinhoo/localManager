@@ -1,9 +1,9 @@
 package com.example.gasManager.controller;
 
-import com.example.gasManager.DTO.CustomerDTO;
-import com.example.gasManager.exceptions.CustomerAlreadyExists;
-import com.example.gasManager.exceptions.CustomerHasActiveOrders;
-import com.example.gasManager.exceptions.CustomerNotFound;
+import com.example.gasManager.model.DTO.CustomerDTO;
+import com.example.gasManager.model.exceptions.CustomerAlreadyExists;
+import com.example.gasManager.model.exceptions.CustomerHasActiveOrders;
+import com.example.gasManager.model.exceptions.CustomerNotFound;
 import com.example.gasManager.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

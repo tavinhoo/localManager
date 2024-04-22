@@ -1,4 +1,4 @@
-package com.example.gasManager.exceptions;
+package com.example.gasManager.model.exceptions;
 
 public class OrderItemsNotEmptyException extends RuntimeException {
     public OrderItemsNotEmptyException(String msg) {
