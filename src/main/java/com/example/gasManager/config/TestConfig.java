@@ -39,8 +39,6 @@ public class TestConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // ENTRADA DE CLIENTES
-
         CustomerDTO customer0dto = new CustomerDTO(
                 "John Doe",
                 CustomerGender.MALE,
