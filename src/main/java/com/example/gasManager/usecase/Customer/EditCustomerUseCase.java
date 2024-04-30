@@ -1,4 +1,4 @@
-package com.example.gasManager.usecase;
+package com.example.gasManager.usecase.Customer;
 
 import com.example.gasManager.core.domain.Customer;
 
