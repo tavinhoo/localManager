@@ -11,7 +11,7 @@ public class DeleteCustomerUseCaseImpl implements DeleteCustomerUseCase {
 
     private CheckActiveOrdersUseCase checkActiveOrdersUseCase;
     private CheckIfCustomerExistsUseCase checkIfCustomerExistsUseCase;
-    private DeleteCustomerGateway  deleteCustomerGateway;
+    private DeleteCustomerGateway deleteCustomerGateway;
 
     public DeleteCustomerUseCaseImpl(CheckActiveOrdersUseCase checkActiveOrdersUseCase, DeleteCustomerGateway deleteCustomerGateway, CheckIfCustomerExistsUseCase checkIfCustomerExistsUseCase) {
         this.checkActiveOrdersUseCase = checkActiveOrdersUseCase;
