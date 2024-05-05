@@ -1,4 +1,4 @@
-package com.example.gasManager.usecase.Order;
+package com.example.gasManager.usecase.order;
 
 import com.example.gasManager.core.domain.Order;
 

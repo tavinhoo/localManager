@@ -4,9 +4,9 @@ import com.example.gasManager.application.gateway.customer.CreateCustomerGateway
 import com.example.gasManager.core.domain.Customer;
 import com.example.gasManager.core.exceptions.CustomerAlreadyExists;
 import com.example.gasManager.core.exceptions.PhoneNumberAlreadyRegistered;
-import com.example.gasManager.usecase.Customer.CheckPhoneAvailabilityUseCase;
-import com.example.gasManager.usecase.Customer.CreateCustomerUseCase;
-import com.example.gasManager.usecase.Customer.CreateUniqueCustomerUseCase;
+import com.example.gasManager.usecase.customer.CheckPhoneAvailabilityUseCase;
+import com.example.gasManager.usecase.customer.CreateCustomerUseCase;
+import com.example.gasManager.usecase.customer.CreateUniqueCustomerUseCase;
 
 public class CreateCustomerUseCaseImpl implements CreateCustomerUseCase {
 

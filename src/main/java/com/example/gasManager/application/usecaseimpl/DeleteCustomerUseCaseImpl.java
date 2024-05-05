@@ -3,9 +3,9 @@ package com.example.gasManager.application.usecaseimpl;
 import com.example.gasManager.application.gateway.customer.DeleteCustomerGateway;
 import com.example.gasManager.core.exceptions.CustomerHasActiveOrders;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
-import com.example.gasManager.usecase.Customer.CheckActiveOrdersUseCase;
-import com.example.gasManager.usecase.Customer.CheckIfCustomerExistsUseCase;
-import com.example.gasManager.usecase.Customer.DeleteCustomerUseCase;
+import com.example.gasManager.usecase.customer.CheckActiveOrdersUseCase;
+import com.example.gasManager.usecase.customer.CheckIfCustomerExistsUseCase;
+import com.example.gasManager.usecase.customer.DeleteCustomerUseCase;
 
 public class DeleteCustomerUseCaseImpl implements DeleteCustomerUseCase {
 
