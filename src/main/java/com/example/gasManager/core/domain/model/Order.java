@@ -1,4 +1,4 @@
-package com.example.gasManager.core.domain;
+package com.example.gasManager.core.domain.model;
 
 import java.time.Instant;
 import java.util.ArrayList;

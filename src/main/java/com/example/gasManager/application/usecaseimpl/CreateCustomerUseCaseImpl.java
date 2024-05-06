@@ -1,7 +1,7 @@
 package com.example.gasManager.application.usecaseimpl;
 
 import com.example.gasManager.application.gateway.customer.CreateCustomerGateway;
-import com.example.gasManager.core.domain.Customer;
+import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.core.exceptions.CustomerAlreadyExists;
 import com.example.gasManager.core.exceptions.PhoneNumberAlreadyRegistered;
 import com.example.gasManager.usecase.customer.CheckPhoneAvailabilityUseCase;

@@ -1,4 +1,4 @@
-package com.example.gasManager.core.domain;
+package com.example.gasManager.core.domain.model;
 
 import com.example.gasManager.core.domain.enums.CustomerGender;
 
