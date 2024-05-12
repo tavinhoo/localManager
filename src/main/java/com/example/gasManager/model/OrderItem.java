@@ -1,6 +1,6 @@
 package com.example.gasManager.model;
 
-import com.example.gasManager.model.enums.PaymentMethod;
+import com.example.gasManager.core.domain.enums.PaymentMethod;
 import com.example.gasManager.model.enums.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
