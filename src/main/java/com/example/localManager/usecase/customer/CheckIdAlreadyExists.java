@@ -1,5 +1,5 @@
 package com.example.gasManager.usecase.customer;
 
-public interface CheckIfCustomerExistsUseCase {
+public interface CheckIdAlreadyExists {
     Boolean customerExists(Long customerId);
 }
