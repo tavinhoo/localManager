@@ -30,6 +30,7 @@ public class OrderService {
         List<Order> orders = orderRepository.findAll();
         return orders;
     }
+
     public Optional<Order> findOrderById(Long id) {
         if(!orderRepository.existsById(id)) {
             throw new OrderNotFound("Pedido não encontrado!");
