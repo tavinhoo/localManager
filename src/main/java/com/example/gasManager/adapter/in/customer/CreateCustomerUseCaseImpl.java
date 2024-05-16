@@ -1,8 +1,8 @@
 package com.example.gasManager.adapter.in.customer;
 
-import com.example.gasManager.application.usecases.customer.CreateUniqueCustomerUseCase;
+import com.example.gasManager.core.domain.usecase.customer.CreateUniqueCustomerUseCase;
 import com.example.gasManager.core.domain.model.Customer;
-import com.example.gasManager.application.usecases.customer.CreateCustomerUseCase;
+import com.example.gasManager.core.domain.usecase.customer.CreateCustomerUseCase;
 import com.example.gasManager.core.domain.repository.CustomerRepository;
 import com.example.gasManager.core.exceptions.CustomerAlreadyExists;
 

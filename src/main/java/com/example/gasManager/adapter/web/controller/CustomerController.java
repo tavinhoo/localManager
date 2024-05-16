@@ -1,4 +1,4 @@
-package com.example.gasManager.controller;
+package com.example.gasManager.adapter.web.controller;
 
 import com.example.gasManager.model.DTO.CustomerDTO;
 import com.example.gasManager.model.exceptions.CustomerAlreadyExists;

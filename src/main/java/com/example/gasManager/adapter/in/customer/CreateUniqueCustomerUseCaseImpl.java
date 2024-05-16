@@ -1,7 +1,7 @@
 package com.example.gasManager.adapter.in.customer;
 
 
-import com.example.gasManager.application.usecases.customer.CreateUniqueCustomerUseCase;
+import com.example.gasManager.core.domain.usecase.customer.CreateUniqueCustomerUseCase;
 import com.example.gasManager.core.domain.repository.CustomerRepository;
 
 public class CreateUniqueCustomerUseCaseImpl implements CreateUniqueCustomerUseCase {

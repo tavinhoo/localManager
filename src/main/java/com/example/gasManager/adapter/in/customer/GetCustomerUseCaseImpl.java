@@ -1,7 +1,7 @@
 package com.example.gasManager.adapter.in.customer;
 
-import com.example.gasManager.application.usecases.customer.CheckIdExists;
-import com.example.gasManager.application.usecases.customer.GetCustomerUseCase;
+import com.example.gasManager.core.domain.usecase.customer.CheckIdExists;
+import com.example.gasManager.core.domain.usecase.customer.GetCustomerUseCase;
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.core.domain.repository.CustomerRepository;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
