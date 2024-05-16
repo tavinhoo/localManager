@@ -3,7 +3,6 @@ package com.example.gasManager.adapter.in.customer;
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.core.domain.usecase.customer.CheckIdExists;
 import com.example.gasManager.core.domain.usecase.customer.EditCustomerUseCase;
-import com.example.gasManager.core.domain.usecase.customer.SaveChangesUseCase;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
 
 public class EditCustomerUseCaseImpl implements EditCustomerUseCase {
@@ -11,6 +10,12 @@ public class EditCustomerUseCaseImpl implements EditCustomerUseCase {
     private GetCustomerUseCaseImpl getCustomerUseCase;
     private CheckIdExists checkIdExists;
     private SaveChangesUseCaseImpl saveChangesUseCase;
+
+    public EditCustomerUseCaseImpl(GetCustomerUseCaseImpl getCustomerUseCase, CheckIdExists checkIdExists, SaveChangesUseCaseImpl saveChangesUseCase) {
+        this.getCustomerUseCase = getCustomerUseCase;
+        this.checkIdExists = checkIdExists;
+        this.saveChangesUseCase = saveChangesUseCase;
+    }
 
     @Override
     public void editCustomer(Long customerId, Customer customer) throws IllegalAccessException {
