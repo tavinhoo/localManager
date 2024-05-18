@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface GetAllCustomersUseCase {
 
-    List<Customer> getAllCustomers();
+    List<Customer> getAll();
 }

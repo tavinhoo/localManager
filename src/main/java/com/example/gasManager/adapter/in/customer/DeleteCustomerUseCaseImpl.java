@@ -4,18 +4,19 @@ import com.example.gasManager.core.domain.usecase.customer.CheckActiveOrdersUseC
 import com.example.gasManager.core.domain.usecase.customer.CheckIdExists;
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.core.domain.repository.CustomerRepository;
+import com.example.gasManager.core.domain.usecase.customer.DeleteCustomerUseCase;
+import com.example.gasManager.core.domain.usecase.customer.GetCustomerUseCase;
 import com.example.gasManager.core.exceptions.CustomerHasActiveOrders;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
-import com.example.gasManager.usecase.customer.DeleteCustomerUseCase;
 
 public class DeleteCustomerUseCaseImpl implements DeleteCustomerUseCase {
 
     private CustomerRepository customerRepository;
     private CheckIdExists checkIdExists;
     private CheckActiveOrdersUseCase checkActiveOrdersUseCase;
-    private GetCustomerUseCaseImpl getCustomerUseCase;
+    private GetCustomerUseCase getCustomerUseCase;
 
-    public DeleteCustomerUseCaseImpl(CustomerRepository customerRepository, CheckIdExists checkIdExists, CheckActiveOrdersUseCase checkActiveOrdersUseCase, GetCustomerUseCaseImpl getCustomerUseCase) {
+    public DeleteCustomerUseCaseImpl(CustomerRepository customerRepository, CheckIdExists checkIdExists, CheckActiveOrdersUseCase checkActiveOrdersUseCase, GetCustomerUseCase getCustomerUseCase) {
         this.customerRepository = customerRepository;
         this.checkIdExists = checkIdExists;
         this.checkActiveOrdersUseCase = checkActiveOrdersUseCase;
