@@ -5,7 +5,9 @@ import com.example.gasManager.application.ports.input.customer.GetCustomerUseCas
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.application.ports.output.CustomerRepository;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GetCustomerService implements GetCustomerUseCase {
 
     private CustomerRepository customerRepository;

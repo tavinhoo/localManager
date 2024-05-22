@@ -8,7 +8,9 @@ import com.example.gasManager.application.ports.input.customer.DeleteCustomerUse
 import com.example.gasManager.application.ports.input.customer.GetCustomerUseCase;
 import com.example.gasManager.core.exceptions.CustomerHasActiveOrders;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DeleteCustomerService implements DeleteCustomerUseCase {
 
     private CustomerRepository customerRepository;

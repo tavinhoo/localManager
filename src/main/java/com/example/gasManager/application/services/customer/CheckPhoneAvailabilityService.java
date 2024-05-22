@@ -3,9 +3,11 @@ package com.example.gasManager.application.services.customer;
 import com.example.gasManager.application.ports.input.customer.CheckPhoneAvailabilityUseCase;
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.application.ports.input.customer.GetAllCustomersUseCase;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CheckPhoneAvailabilityService implements CheckPhoneAvailabilityUseCase {
 
     private GetAllCustomersUseCase getAllCustomers;

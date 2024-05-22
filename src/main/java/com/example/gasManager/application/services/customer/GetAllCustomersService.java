@@ -3,9 +3,11 @@ package com.example.gasManager.application.services.customer;
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.application.ports.output.CustomerRepository;
 import com.example.gasManager.application.ports.input.customer.GetAllCustomersUseCase;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class GetAllCustomersService implements GetAllCustomersUseCase {
 
     private CustomerRepository customerRepository;

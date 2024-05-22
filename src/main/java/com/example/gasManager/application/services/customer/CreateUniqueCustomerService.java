@@ -3,7 +3,9 @@ package com.example.gasManager.application.services.customer;
 
 import com.example.gasManager.application.ports.input.customer.CreateUniqueCustomerUseCase;
 import com.example.gasManager.application.ports.output.CustomerRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateUniqueCustomerService implements CreateUniqueCustomerUseCase {
 
     private final CustomerRepository customerRepository;

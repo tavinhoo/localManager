@@ -5,7 +5,9 @@ import com.example.gasManager.application.ports.input.customer.CheckIdExistsUseC
 import com.example.gasManager.application.ports.input.customer.EditCustomerUseCase;
 import com.example.gasManager.application.ports.input.customer.SaveChangesUseCase;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EditCustomerService implements EditCustomerUseCase {
 
     private GetCustomerService getCustomerUseCase;
