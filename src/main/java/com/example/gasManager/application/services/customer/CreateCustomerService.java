@@ -19,9 +19,10 @@ public class CreateCustomerService implements CreateCustomerUseCase {
     }
 
     @Override
-    public void createCustomer(Customer customer) {
+    public Customer createCustomer(Customer customer) {
         if(createUniqueCustomerUseCase.customersExist(customer.getName())) {
             throw new CustomerAlreadyExists("Já existe um cadastro com este nome!");
         }
+        return customerRepository.save(customer);
     }
 }

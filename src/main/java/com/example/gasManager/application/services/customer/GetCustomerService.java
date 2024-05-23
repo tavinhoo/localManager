@@ -13,9 +13,9 @@ public class GetCustomerService implements GetCustomerUseCase {
     private CustomerRepository customerRepository;
     private CheckIdExistsUseCase checkIdExistsUseCase;
 
-    public GetCustomerService(CustomerRepository customerRepository, CheckIdExistsUseCase checkIdExists) {
+    public GetCustomerService(CustomerRepository customerRepository, CheckIdExistsUseCase checkIdExistsUseCase) {
         this.customerRepository = customerRepository;
-        this.checkIdExistsUseCase = checkIdExists;
+        this.checkIdExistsUseCase = checkIdExistsUseCase;
     }
 
     @Override
@@ -23,6 +23,6 @@ public class GetCustomerService implements GetCustomerUseCase {
         if(!checkIdExistsUseCase.idExists(customerId)) {
             throw new CustomerNotFound("Customer not found");
         }
-        return customerRepository.findById(customerId);
+        return customerRepository.findById(customerId).get();
     }
 }
