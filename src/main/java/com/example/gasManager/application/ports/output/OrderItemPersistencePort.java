@@ -4,7 +4,7 @@ import com.example.gasManager.core.domain.model.OrderItem;
 
 import java.util.List;
 
-public interface OrderItemRepository {
+public interface OrderItemPersistencePort {
     void save(OrderItem orderItem);
     OrderItem findById(Long id);
     void delete(Long orderItemId);

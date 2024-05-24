@@ -1,21 +1,21 @@
 package com.example.gasManager.application.services.customer;
 
 
-import com.example.gasManager.application.ports.input.customer.CreateUniqueCustomerUseCase;
-import com.example.gasManager.application.ports.output.CustomerRepository;
+import com.example.gasManager.application.ports.input.customer.CreateUniqueCustomerPort;
+import com.example.gasManager.application.ports.output.CustomerPersistencePort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CreateUniqueCustomerService implements CreateUniqueCustomerUseCase {
+public class CreateUniqueCustomerService implements CreateUniqueCustomerPort {
 
-    private final CustomerRepository customerRepository;
+    private final CustomerPersistencePort customerPersistencePort;
 
-    public CreateUniqueCustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CreateUniqueCustomerService(CustomerPersistencePort customerPersistencePort) {
+        this.customerPersistencePort = customerPersistencePort;
     }
 
     @Override
     public Boolean customersExist(String customerName) {
-        return customerRepository.existsByName(customerName);
+        return customerPersistencePort.existsByName(customerName);
     }
 }

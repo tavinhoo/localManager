@@ -1,5 +1,5 @@
 package com.example.gasManager.application.ports.input.customer;
 
-public interface CheckIdExistsUseCase {
+public interface CheckIdExistsPort {
     Boolean idExists(Long customerId);
 }

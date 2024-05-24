@@ -2,9 +2,6 @@ package com.example.gasManager.application.ports.input.customer;
 
 import com.example.gasManager.core.domain.model.Customer;
 
-import java.util.List;
-
-public interface GetAllCustomersUseCase {
-
-    List<Customer> getAll();
+public interface GetCustomerPort {
+    Customer getCustomerById(Long customerId);
 }

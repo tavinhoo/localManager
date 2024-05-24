@@ -1,18 +1,18 @@
 package com.example.gasManager.application.services.customer;
 
-import com.example.gasManager.application.ports.input.customer.CheckPhoneAvailabilityUseCase;
+import com.example.gasManager.application.ports.input.customer.CheckPhoneAvailabilityPort;
 import com.example.gasManager.core.domain.model.Customer;
-import com.example.gasManager.application.ports.input.customer.GetAllCustomersUseCase;
+import com.example.gasManager.application.ports.input.customer.GetAllCustomersPort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CheckPhoneAvailabilityService implements CheckPhoneAvailabilityUseCase {
+public class CheckPhoneAvailabilityService implements CheckPhoneAvailabilityPort {
 
-    private GetAllCustomersUseCase getAllCustomers;
+    private GetAllCustomersPort getAllCustomers;
 
-    public CheckPhoneAvailabilityService(GetAllCustomersUseCase getAllCustomers) {
+    public CheckPhoneAvailabilityService(GetAllCustomersPort getAllCustomers) {
             this.getAllCustomers = getAllCustomers;
     }
 

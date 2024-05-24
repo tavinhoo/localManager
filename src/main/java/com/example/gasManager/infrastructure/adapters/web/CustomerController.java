@@ -1,8 +1,8 @@
 package com.example.gasManager.infrastructure.adapters.web;
 
-import com.example.gasManager.application.ports.output.CustomerRepository;
+import com.example.gasManager.application.ports.output.CustomerPersistencePort;
 import com.example.gasManager.application.services.customer.CreateCustomerService;
-import com.example.gasManager.infrastructure.adapters.entity.CustomerEntity;
+import com.example.gasManager.infrastructure.adapters.persistence.entity.CustomerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 public class CustomerController {
 
+    @Autowired
     private final CreateCustomerService createCustomerService;
-    private final CustomerRepository customerRepository;
 
     @Autowired
-    public CustomerController(CreateCustomerService createCustomerService, CustomerRepository customerRepository) {
+    private final CustomerPersistencePort customerPersistencePort;
+
+    public CustomerController(CreateCustomerService createCustomerService, CustomerPersistencePort customerPersistencePort) {
         this.createCustomerService = createCustomerService;
-        this.customerRepository = customerRepository;
+        this.customerPersistencePort = customerPersistencePort;
     }
 
     @PostMapping

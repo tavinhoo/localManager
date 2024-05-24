@@ -1,5 +1,5 @@
 package com.example.gasManager.application.ports.input.customer;
 
-public interface DeleteCustomerUseCase {
+public interface DeleteCustomerPort {
     void deleteCustomerById(Long customerId);
 }

@@ -1,22 +1,22 @@
 package com.example.gasManager.application.services.customer;
 
 import com.example.gasManager.core.domain.model.Customer;
-import com.example.gasManager.application.ports.input.customer.CheckIdExistsUseCase;
-import com.example.gasManager.application.ports.input.customer.EditCustomerUseCase;
-import com.example.gasManager.application.ports.input.customer.SaveChangesUseCase;
+import com.example.gasManager.application.ports.input.customer.CheckIdExistsPort;
+import com.example.gasManager.application.ports.input.customer.EditCustomerPort;
+import com.example.gasManager.application.ports.input.customer.SaveChangesPort;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EditCustomerService implements EditCustomerUseCase {
+public class EditCustomerService implements EditCustomerPort {
 
     private GetCustomerService getCustomerUseCase;
-    private CheckIdExistsUseCase checkIdExists;
-    private SaveChangesUseCase saveChangesUseCase;
+    private CheckIdExistsPort checkIdExists;
+    private SaveChangesPort saveChangesUseCase;
 
-    public EditCustomerService(GetCustomerService getCustomerUseCase, CheckIdExistsUseCase checkIdExistsUseCase, SaveChangesUseCase saveChangesUseCase) {
+    public EditCustomerService(GetCustomerService getCustomerUseCase, CheckIdExistsPort checkIdExistsPort, SaveChangesPort saveChangesUseCase) {
         this.getCustomerUseCase = getCustomerUseCase;
-        this.checkIdExists = checkIdExistsUseCase;
+        this.checkIdExists = checkIdExistsPort;
         this.saveChangesUseCase = saveChangesUseCase;
     }
 

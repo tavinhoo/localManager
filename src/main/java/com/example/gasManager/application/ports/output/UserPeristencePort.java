@@ -4,7 +4,7 @@ import com.example.gasManager.core.domain.model.User;
 
 import java.util.List;
 
-public interface UserRepository {
+public interface UserPeristencePort {
     void save(User user);
     User findById(Long userId);
     void deleteById(Long userId);

@@ -1,28 +1,28 @@
 package com.example.gasManager.application.services.customer;
 
-import com.example.gasManager.application.ports.input.customer.CheckIdExistsUseCase;
-import com.example.gasManager.application.ports.input.customer.GetCustomerUseCase;
+import com.example.gasManager.application.ports.input.customer.CheckIdExistsPort;
+import com.example.gasManager.application.ports.input.customer.GetCustomerPort;
 import com.example.gasManager.core.domain.model.Customer;
-import com.example.gasManager.application.ports.output.CustomerRepository;
+import com.example.gasManager.application.ports.output.CustomerPersistencePort;
 import com.example.gasManager.core.exceptions.CustomerNotFound;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GetCustomerService implements GetCustomerUseCase {
+public class GetCustomerService implements GetCustomerPort {
 
-    private CustomerRepository customerRepository;
-    private CheckIdExistsUseCase checkIdExistsUseCase;
+    private CustomerPersistencePort customerPersistencePort;
+    private CheckIdExistsPort checkIdExistsPort;
 
-    public GetCustomerService(CustomerRepository customerRepository, CheckIdExistsUseCase checkIdExistsUseCase) {
-        this.customerRepository = customerRepository;
-        this.checkIdExistsUseCase = checkIdExistsUseCase;
+    public GetCustomerService(CustomerPersistencePort customerPersistencePort, CheckIdExistsPort checkIdExistsPort) {
+        this.customerPersistencePort = customerPersistencePort;
+        this.checkIdExistsPort = checkIdExistsPort;
     }
 
     @Override
     public Customer getCustomerById(Long customerId) {
-        if(!checkIdExistsUseCase.idExists(customerId)) {
+        if(!checkIdExistsPort.idExists(customerId)) {
             throw new CustomerNotFound("Customer not found");
         }
-        return customerRepository.findById(customerId).get();
+        return customerPersistencePort.findById(customerId).get();
     }
 }
