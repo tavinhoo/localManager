@@ -19,10 +19,9 @@ public class Customer {
     private List<Order> orderList = new ArrayList<Order>();
 
     public Customer() {
-
     }
 
-    public Customer(String name, String customerGender, String phone1, String phone2, String neighborhood, String street, String number, String landmark, List<Order> orderList) {
+    public Customer(String name, String customerGender, String phone1, String phone2, String neighborhood, String street, String number, String landmark) {
         this.name = name;
         this.customerGender = customerGender;
         this.phone1 = phone1;
@@ -31,7 +30,17 @@ public class Customer {
         this.street = street;
         this.number = number;
         this.landmark = landmark;
-        this.orderList = orderList;
+    }
+
+    public Customer(String name, String customerGender, String phone1, String neighborhood, String street, String number, String landmark) {
+        this.name = name;
+        this.customerGender = customerGender;
+        this.phone1 = phone1;
+        this.phone2 = null;
+        this.neighborhood = neighborhood;
+        this.street = street;
+        this.number = number;
+        this.landmark = landmark;
     }
 
     public Long getId() {
@@ -68,10 +77,6 @@ public class Customer {
 
     public void setPhone2(String phone2) {
         this.phone2 = phone2;
-    }
-
-    public void setOrderList(List<Order> orderList) {
-        this.orderList = orderList;
     }
 
     public String getNeighborhood() {

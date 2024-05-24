@@ -1,7 +1,10 @@
 package com.example.gasManager.infrastructure.adapters.persistence.customer.entity;
 
+import com.example.gasManager.core.domain.model.Order;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,16 +26,6 @@ public class CustomerEntity {
     public CustomerEntity() {
     }
 
-    public CustomerEntity(String name, String customerGender, String phone1, String neighborhood, String street, String number, String landmark) {
-        this.name = name;
-        this.customerGender = customerGender;
-        this.phone1 = phone1;
-        this.neighborhood = neighborhood;
-        this.street = street;
-        this.number = number;
-        this.landmark = landmark;
-    }
-
     public CustomerEntity(String name, String customerGender, String phone1, String phone2, String neighborhood, String street, String number, String landmark) {
         this.name = name;
         this.customerGender = customerGender;
@@ -44,8 +37,15 @@ public class CustomerEntity {
         this.landmark = landmark;
     }
 
-    public Long getId() {
-        return id;
+    public CustomerEntity(String name, String customerGender, String phone1, String neighborhood, String street, String number, String landmark) {
+        this.name = name;
+        this.customerGender = customerGender;
+        this.phone1 = phone1;
+        this.phone2 = null;
+        this.neighborhood = neighborhood;
+        this.street = street;
+        this.number = number;
+        this.landmark = landmark;
     }
 
     public String getName() {
@@ -64,8 +64,19 @@ public class CustomerEntity {
         this.customerGender = customerGender;
     }
 
-    public CustomerEntity(String phone1, String phone2) {
+    public String getPhone1() {
+        return phone1;
+    }
+
+    public void setPhone1(String phone1) {
         this.phone1 = phone1;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone2) {
         this.phone2 = phone2;
     }
 
@@ -99,18 +110,5 @@ public class CustomerEntity {
 
     public void setLandmark(String landmark) {
         this.landmark = landmark;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CustomerEntity that = (CustomerEntity) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(customerGender, that.customerGender) && Objects.equals(phone1, that.phone1) && Objects.equals(phone2, that.phone2) && Objects.equals(neighborhood, that.neighborhood) && Objects.equals(street, that.street) && Objects.equals(number, that.number) && Objects.equals(landmark, that.landmark);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, customerGender, phone1, phone2, neighborhood, street, number, landmark);
     }
 }
