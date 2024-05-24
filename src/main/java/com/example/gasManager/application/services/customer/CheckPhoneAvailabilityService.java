@@ -20,7 +20,7 @@ public class CheckPhoneAvailabilityService implements CheckPhoneAvailabilityPort
     public Boolean phoneIsAvailable(String phoneNumber) {
         List<Customer> allCustomers = getAllCustomers.getAll();
         for (Customer customer : allCustomers) {
-            if(customer.getPhone_1() == phoneNumber || customer.getPhone_2() == phoneNumber){
+            if(customer.getPhone1() == phoneNumber || customer.getPhone2() == phoneNumber){
                 return false;
             }
         }

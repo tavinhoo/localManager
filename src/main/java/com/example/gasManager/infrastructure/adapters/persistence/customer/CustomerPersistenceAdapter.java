@@ -1,9 +1,9 @@
-package com.example.gasManager.infrastructure.adapters.persistence;
+package com.example.gasManager.infrastructure.adapters.persistence.customer;
 
 import com.example.gasManager.application.ports.output.CustomerPersistencePort;
 import com.example.gasManager.core.domain.model.Customer;
-import com.example.gasManager.infrastructure.adapters.persistence.mapper.CustomerPersistenceMapper;
-import com.example.gasManager.infrastructure.adapters.persistence.repository.CustomerRepository;
+import com.example.gasManager.infrastructure.adapters.persistence.customer.mapper.CustomerPersistenceMapper;
+import com.example.gasManager.infrastructure.adapters.persistence.customer.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,8 +15,8 @@ public class CustomerPersistenceAdapter implements CustomerPersistencePort {
     private final CustomerRepository repository;
     private final CustomerPersistenceMapper mapper;
 
-    public CustomerPersistenceAdapter(CustomerRepository repository, CustomerRepository customerRepository1, CustomerPersistenceMapper customerPersistenceMapper, CustomerPersistenceMapper mapper) {
-        this.repository = customerRepository1;
+    public CustomerPersistenceAdapter(CustomerRepository repository, CustomerPersistenceMapper mapper) {
+        this.repository = repository;
         this.mapper = mapper;
     }
 

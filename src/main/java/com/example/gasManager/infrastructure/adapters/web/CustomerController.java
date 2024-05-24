@@ -1,9 +1,9 @@
 package com.example.gasManager.infrastructure.adapters.web;
 
-import com.example.gasManager.application.ports.output.CustomerPersistencePort;
 import com.example.gasManager.application.services.customer.CreateCustomerService;
-import com.example.gasManager.infrastructure.adapters.persistence.entity.CustomerEntity;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.gasManager.core.domain.model.Customer;
+import com.example.gasManager.core.exceptions.CustomerAlreadyExists;
+import com.example.gasManager.infrastructure.adapters.persistence.customer.mapper.CustomerPersistenceMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,19 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/customer")
 public class CustomerController {
 
-    @Autowired
     private final CreateCustomerService createCustomerService;
+    public final CustomerPersistenceMapper mapper;
 
-    @Autowired
-    private final CustomerPersistencePort customerPersistencePort;
-
-    public CustomerController(CreateCustomerService createCustomerService, CustomerPersistencePort customerPersistencePort) {
+    public CustomerController(CreateCustomerService createCustomerService, CustomerPersistenceMapper mapper) {
         this.createCustomerService = createCustomerService;
-        this.customerPersistencePort = customerPersistencePort;
+        this.mapper = mapper;
     }
 
     @PostMapping
-    public ResponseEntity<CustomerEntity> addCustomer(@RequestBody CustomerEntity customer) {
-       return new ResponseEntity<>(customer, HttpStatus.CREATED);
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createCustomerService.createCustomer(customer));
+        } catch (CustomerAlreadyExists e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
     }
 }

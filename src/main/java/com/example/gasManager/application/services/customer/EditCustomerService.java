@@ -30,8 +30,8 @@ public class EditCustomerService implements EditCustomerPort {
 
         customer0.setName(customer.getName());
         customer0.setCustomerGender(customer.getCustomerGender());
-        customer0.setPhone_1(customer.getPhone_1());
-        customer0.setPhone_2(customer.getPhone_2());
+        customer0.setPhone1(customer.getPhone1());
+        customer0.setPhone2(customer.getPhone2());
         customer0.setNeighborhood(customer.getNeighborhood());
         customer0.setStreet(customer.getStreet());
         customer0.setNumber(customer.getNumber());

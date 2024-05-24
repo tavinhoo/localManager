@@ -11,18 +11,13 @@ import org.springframework.stereotype.Service;
 public class CreateCustomerService implements CreateCustomerPort {
 
     private final CustomerPersistencePort customerPersistencePort;
-    private final CreateUniqueCustomerPort createUniqueCustomerPort;
 
-    public CreateCustomerService(CustomerPersistencePort customerPersistencePort, CreateUniqueCustomerPort createUniqueCustomerPort) {
+    public CreateCustomerService(CustomerPersistencePort customerPersistencePort) {
         this.customerPersistencePort = customerPersistencePort;
-        this.createUniqueCustomerPort = createUniqueCustomerPort;
     }
 
     @Override
     public Customer createCustomer(Customer customer) {
-        if(createUniqueCustomerPort.customersExist(customer.getName())) {
-            throw new CustomerAlreadyExists("Já existe um cadastro com este nome!");
-        }
         return customerPersistencePort.save(customer);
     }
 }

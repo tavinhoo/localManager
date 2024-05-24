@@ -14,28 +14,27 @@ import org.springframework.stereotype.Service;
 public class DeleteCustomerService implements DeleteCustomerPort {
 
     private CustomerPersistencePort customerPersistencePort;
-    private CheckIdExistsPort checkIdExists;
     private CheckActiveOrdersPort checkActiveOrdersPort;
     private GetCustomerPort getCustomerPort;
+    private CheckIdExistsPort checkIdExistsPort;
 
-    public DeleteCustomerService(CustomerPersistencePort customerPersistencePort, CheckIdExistsPort checkIdExists, CheckActiveOrdersPort checkActiveOrdersPort, GetCustomerPort getCustomerPort) {
+    public DeleteCustomerService(CustomerPersistencePort customerPersistencePort, CheckActiveOrdersPort checkActiveOrdersPort, GetCustomerPort getCustomerPort, CheckIdExistsPort checkIdExistsPort) {
         this.customerPersistencePort = customerPersistencePort;
-        this.checkIdExists = checkIdExists;
         this.checkActiveOrdersPort = checkActiveOrdersPort;
         this.getCustomerPort = getCustomerPort;
+        this.checkIdExistsPort = checkIdExistsPort;
     }
+
 
     @Override
     public void deleteCustomerById(Long customerId) {
-        if(!checkIdExists.idExists(customerId)) {
+        if(!checkIdExistsPort.idExists(customerId)) {
             throw new CustomerNotFound("Cadastro não encontrado!");
         }
 
         if(checkActiveOrdersPort.customerHasActiveOrders(customerId)) {
             throw new CustomerHasActiveOrders("O cliente tem ordens ativas!");
         }
-
-        Customer customer0 = getCustomerPort.getCustomerById(customerId);
-        customerPersistencePort.delete(customer0);
+        customerPersistencePort.deleteById(customerId);
     }
 }
