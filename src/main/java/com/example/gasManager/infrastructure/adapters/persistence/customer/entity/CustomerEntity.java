@@ -1,6 +1,7 @@
 package com.example.gasManager.infrastructure.adapters.persistence.customer.entity;
 
 import com.example.gasManager.core.domain.model.Order;
+import com.example.gasManager.infrastructure.adapters.persistence.order.entity.OrderEntity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class CustomerEntity {
     private String street;
     private String number;
     private String landmark;
+
+    @OneToMany
+    private List<OrderEntity> orderList = new ArrayList<>();
 
     public CustomerEntity() {
     }
@@ -110,5 +114,22 @@ public class CustomerEntity {
 
     public void setLandmark(String landmark) {
         this.landmark = landmark;
+    }
+
+    public List<OrderEntity> getOrderList() {
+        return orderList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerEntity that = (CustomerEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(customerGender, that.customerGender) && Objects.equals(phone1, that.phone1) && Objects.equals(phone2, that.phone2) && Objects.equals(neighborhood, that.neighborhood) && Objects.equals(street, that.street) && Objects.equals(number, that.number) && Objects.equals(landmark, that.landmark) && Objects.equals(orderList, that.orderList);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, customerGender, phone1, phone2, neighborhood, street, number, landmark, orderList);
     }
 }
