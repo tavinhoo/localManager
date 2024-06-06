@@ -4,7 +4,6 @@ import com.example.gasManager.application.ports.input.customer.CreateUniqueCusto
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.application.ports.input.customer.CreateCustomerPort;
 import com.example.gasManager.application.ports.output.CustomerPersistencePort;
-import com.example.gasManager.core.exceptions.CustomerAlreadyExists;
 import org.springframework.stereotype.Service;
 
 @Service

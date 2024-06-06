@@ -14,10 +14,12 @@ public class CustomerPersistenceAdapter implements CustomerPersistencePort {
 
     private final CustomerRepository repository;
     private final CustomerPersistenceMapper mapper;
+    private final CustomerRepository customerRepository;
 
-    public CustomerPersistenceAdapter(CustomerRepository repository, CustomerPersistenceMapper mapper) {
+    public CustomerPersistenceAdapter(CustomerRepository repository, CustomerPersistenceMapper mapper, CustomerRepository customerRepository) {
         this.repository = repository;
         this.mapper = mapper;
+        this.customerRepository = customerRepository;
     }
 
     @Override
