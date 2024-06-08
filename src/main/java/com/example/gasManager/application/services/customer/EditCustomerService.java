@@ -4,7 +4,7 @@ import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.application.ports.input.customer.CheckIdExistsPort;
 import com.example.gasManager.application.ports.input.customer.EditCustomerPort;
 import com.example.gasManager.application.ports.input.customer.SaveChangesPort;
-import com.example.gasManager.core.exceptions.CustomerNotFound;
+import com.example.gasManager.core.exceptions.customer.CustomerNotFound;
 import org.springframework.stereotype.Service;
 
 @Service
