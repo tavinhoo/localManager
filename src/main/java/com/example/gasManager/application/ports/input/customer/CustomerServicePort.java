@@ -12,5 +12,4 @@ public interface CustomerServicePort {
     Customer updateCustomer(Long customerId, Customer customer);
     Optional<Customer> findCustomerById(Long customerId);
     List<Customer> findAllCustomers();
-
 }

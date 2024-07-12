@@ -1,4 +1,4 @@
-package com.example.gasManager.core.exceptions;
+package com.example.gasManager.core.exceptions.customer;
 
 public class CustomerHasActiveOrders extends RuntimeException {
     public CustomerHasActiveOrders(String msg) {

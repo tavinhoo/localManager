@@ -1,7 +1,5 @@
 package com.example.gasManager.infrastructure.adapters.web;
 
-import com.example.gasManager.application.services.customer.CreateCustomerService;
-import com.example.gasManager.application.services.customer.GetAllCustomersService;
 import com.example.gasManager.core.domain.model.Customer;
 import com.example.gasManager.core.exceptions.CustomerAlreadyExists;
 import com.example.gasManager.infrastructure.adapters.persistence.customer.entity.CustomerEntity;

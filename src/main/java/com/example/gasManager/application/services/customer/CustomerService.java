@@ -58,6 +58,8 @@ public class CustomerService implements CustomerServicePort {
 
     @Override
     public List<Customer> findAllCustomers() {
-        return List.of();
+        return customerPersistencePort.findAll();
     }
+
+
 }
